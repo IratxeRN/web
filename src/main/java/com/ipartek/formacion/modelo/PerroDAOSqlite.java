@@ -1,7 +1,6 @@
 package com.ipartek.formacion.modelo;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -10,36 +9,32 @@ import com.ipartek.formacion.pojo.Perro;
 
 public class PerroDAOSqlite implements PerroDao {
 
-	private static final String PATH = "ddbb/perrera.db";
 	private static PerroDAOSqlite INSTANCE = null;
-	
-	// Private constructor suppresses 
+
+	// Private constructor suppresses
 	private PerroDAOSqlite() {
-		super();		
+		super();
 	}
-	
-	
-	public synchronized static  PerroDAOSqlite getInstance() {
-		if ( INSTANCE == null ) {
+
+	public synchronized static PerroDAOSqlite getInstance() {
+		if (INSTANCE == null) {
 			INSTANCE = new PerroDAOSqlite();
 		}
 		return INSTANCE;
 	}
-		
-
-
 
 	@Override
 	public ArrayList<Perro> listar() {
+
 		final String SQL = "SELECT id, nombre, raza, peso, vacunado, historia FROM perro ORDER BY nombre ASC;";
 		ArrayList<Perro> perros = new ArrayList<Perro>();
 
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
+		try (Connection conn = ConectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(SQL);
 				ResultSet rs = pst.executeQuery();) {
 
 			System.out.println("***" + pst);
-			
+
 			while (rs.next()) {
 
 				Perro p = new Perro();
@@ -47,6 +42,7 @@ public class PerroDAOSqlite implements PerroDao {
 				p.setNombre(rs.getString("nombre"));
 				p.setRaza(rs.getString("raza"));
 				p.setPeso(rs.getFloat("peso"));
+
 				p.setVacunado(rs.getBoolean("vacunado"));
 				p.setHistoria(rs.getString("historia"));
 
@@ -65,13 +61,12 @@ public class PerroDAOSqlite implements PerroDao {
 		Perro perro = null;
 		final String SQL = "SELECT id, nombre FROM perro WHERE id = ?;";
 
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
-				PreparedStatement pst = conn.prepareStatement(SQL);) {
+		try (Connection conn = ConectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(SQL);) {
 
 			pst.setInt(1, id); // sustituimos el 1� ? de la SQL por el parametro id
 
 			System.out.println(pst);
-			
+
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					perro = new Perro();
@@ -89,14 +84,14 @@ public class PerroDAOSqlite implements PerroDao {
 	@Override
 	public Perro crear(Perro p) throws Exception {
 		final String SQL = "INSERT INTO perro (nombre,raza,peso, vacunado, historia) VALUES (?, ?, ?,?,?);";
-		
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
+
+		try (Connection conn = ConectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);) {
 
 			pst.setString(1, p.getNombre());
 			pst.setString(2, p.getRaza());
 			pst.setFloat(3, p.getPeso());
-			pst.setBoolean(4, p.isVacunado() );
+			pst.setBoolean(4, p.isVacunado());
 			pst.setString(5, p.getHistoria());
 
 			int affectedsRows = pst.executeUpdate();
@@ -109,7 +104,7 @@ public class PerroDAOSqlite implements PerroDao {
 						p.setId(id);
 					}
 				}
-			} 
+			}
 
 		}
 
@@ -120,8 +115,7 @@ public class PerroDAOSqlite implements PerroDao {
 	public Perro modificar(Perro p) throws Exception {
 		Perro perro = null;
 		final String SQL = "UPDATE perro nombre = ? , peso = ? WHERE id = ?;";
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
-				PreparedStatement pst = conn.prepareStatement(SQL);) {
+		try (Connection conn = ConectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(SQL);) {
 
 			pst.setString(1, p.getNombre());
 			pst.setFloat(2, p.getPeso());
@@ -138,8 +132,7 @@ public class PerroDAOSqlite implements PerroDao {
 	public boolean eliminar(int id) throws Exception {
 		boolean resul = false;
 		final String SQL = "DELETE FROM perro WHERE id = ?;";
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
-				PreparedStatement pst = conn.prepareStatement(SQL);) {
+		try (Connection conn = ConectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(SQL);) {
 
 			pst.setInt(1, id);
 
@@ -154,7 +147,7 @@ public class PerroDAOSqlite implements PerroDao {
 	public int getLastId() {
 		int resultado = 0;
 		final String SQL = "SELECT id FROM perro ORDER BY id DESC LIMIT 1;";
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
+		try (Connection conn = ConectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(SQL);
 				ResultSet rs = pst.executeQuery();) {
 
@@ -167,7 +160,5 @@ public class PerroDAOSqlite implements PerroDao {
 		}
 		return resultado;
 	}
-
-
 
 }

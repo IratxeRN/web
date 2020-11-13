@@ -36,13 +36,11 @@ public class PerroController extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-
-		} finally {
-			lista.add(new Perro("buba", "boxer", 3));
-			lista.add(new Perro("Snoppy", "cruce", 3));
-			lista.add(new Perro("pulgas", "otra", 20));
+			/*
+			 * } finally { lista.add(new Perro("buba", "boxer", 3)); lista.add(new
+			 * Perro("Snoppy", "cruce", 3)); lista.add(new Perro("pulgas", "otra", 20)); }
+			 */
 		}
-
 		// enviarlos a la JSP
 		request.setAttribute("perros", lista);
 
@@ -57,16 +55,29 @@ public class PerroController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
-		//recibri datos del formulario, fijaros en el input el atributo 'name'
+
+		// recibri datos del formulario, fijaros en el input el atributo 'name'
 		String parametroNombre = request.getParameter("nombre");
 		String raza = request.getParameter("raza");
-		
+		Float peso = Float.parseFloat(request.getParameter("peso"));
+		Boolean vacunado = (request.getParameter("vacunado") == null) ? false : true;
+		String historia = request.getParameter("historia");
+
 		Perro p = new Perro();
 		p.setNombre(parametroNombre);
 		p.setRaza(raza);
-		
+		p.setPeso(peso);
+		p.setVacunado(vacunado);
+		p.setHistoria(historia);
+
+		PerroDAOSqlite dao = PerroDAOSqlite.getInstance();
+		try {
+			dao.crear(p);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
 		// enviarlos a la JSP
 		request.setAttribute("perro", p);
 
