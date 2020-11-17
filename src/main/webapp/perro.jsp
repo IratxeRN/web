@@ -6,7 +6,7 @@
 
 
 <hr>
-	<h2>Perro Creado</h2>
+	<h2>Perro Creado / Modificado</h2>
 	
 	${perro}
 	

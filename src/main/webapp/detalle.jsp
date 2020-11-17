@@ -7,6 +7,8 @@
 
 		<h2>Detalle del perro</h2>
 			
+			${mensaje}
+			
 			${perro}
 		
 		

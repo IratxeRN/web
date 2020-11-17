@@ -83,30 +83,57 @@ h1{
 	color: var(--blanco);
 	padding: 0 0 0 20px;
 	letter-spacing: 2px;
- 
+}
+
+h2, h3, h4{
+margin: 15px 0 15px 0;
 }
 
 h2{
-	font-size: 2em;
-}
-h2, h3, h4{
-margin: 5px 0 5px 0;
+	font-size: 1.5em;
 }
 
-form  {
-	border: 1px solid var(--lightgrey);
-	position:relative;
-	width: 100%;
-	padding: 20px;
-	box-sizing: border-box;
+h3{
+	font-size: 1.3em;
 }
 
-input { 
-	width:95%;
-	margin: 5px; 
-	}
+form {
+	margin: 2rem auto 2rem auto;
+	width: 50%;
+	background-color: var(--color-white);
+	padding: 2rem;
+}
+
+label {
+	color: #333;
+}
+
+input, textarea {
+	color:  var(--color-primary);
+	padding: 10px;
+}
+
+input[type="checkbox"] {
+	height: 2rem;
+}
+
+.form-group {
+	display: flex;
+	margin-bottom: 1rem;
+}
+
+.form-group label {
+	width: 25%
+}
+
+.form-group input {
+	width: 70%
+}
 
 
+i {
+	color: #ff8000;
+}
 
 
 /********** LAYOUTS **********/
@@ -123,6 +150,7 @@ input {
 
 .container{
 	width: 1024px;
+
 }
 
 
@@ -134,6 +162,7 @@ input {
   	background-color: var(--darkdarkgrey);
   	
 }
+
 
 
 .menu{
@@ -192,17 +221,19 @@ input {
 }
 
 
-
 .eliminar{
 	text-align: right;
+	position: relative;
+	top: 5px;
+	margin: 50px;
 }
+
 .eliminar a{
 	padding:10px;
 	background-color: var(--darkdarkgrey);
 	color: white;
 	font-weight: 600;
 	text-align: center;
-	
 }
 
 /*       HERO       */
@@ -260,14 +291,16 @@ body, html {
     align-items: center;    
     text-transform: uppercase;
     background-color: var(--white);
-    border: 1px solid var(--lightmarron);
+    border: 2px solid var(--darkmarron);
     border-radius: 10px;
     color: var(--white);
 }
+
 
 .boton:hover {
   transition: 1s;
   color: var(--black);
   background-color: var(--darkmarron);
+  cursor: pointer;
 }
 

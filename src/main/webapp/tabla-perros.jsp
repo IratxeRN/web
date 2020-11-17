@@ -7,6 +7,8 @@
 
 <main class="container" >
 
+<h3>${mensaje}</h3>
+
 	<table>
 		<caption>Perros en la perrera</caption>	 
 		<thead>
@@ -17,6 +19,7 @@
 			<th>Peso</th>
 			<th>Vacunado</th>
 			<th>Historia</th>
+			<th>Acciones</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -28,12 +31,17 @@
 				<td>${perro.peso}</td>
 				<td>${ (perro.vacunado) ? 'Si' : 'No' }</td>
 				<td>${perro.historia}</td>
+				<td><a href="perro-detalle?id=${perro.id}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+				    <a href="perro-eliminar?id=${perro.id}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				    <a href="perro-editar?id=${perro.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				</td>
+				
 			</tr>
 		</c:forEach>
 		</tbody>	 	
 	 	<tfoot>
 	 		<tr>
-	 			<td colspan="6">Fin del listado</td>
+	 			<td colspan="7">Fin del listado</td>
 	 		</tr>
 	 	</tfoot>	 
 	</table>

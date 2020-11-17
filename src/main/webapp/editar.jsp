@@ -5,38 +5,47 @@
 
 <main class="container" >
 
-<h2>Nuevo Perro</h2>
+
+
+<h2>Modificar Datos del Perro</h2>
 <!--  Esto hace una peticion GET al controlador-->
-<form method="post" action="perro-controller">
+<form method="post" action="perro-modificado">
  	
  	<div class="form-group">
-				<label for="nombre">Nombre:</label>
-				<input type="text" autofocus id="nombre" name="nombre" placeholder="Nombre del perro" required>
+ 				
+				<label for="id">Id:</label>
+				<input type="text" id="id" name="id" required value="${perro.id}" readonly >
 			</div>
-
+ 	
+ 	<div class="form-group">
+ 				
+				<label for="nombre">Nombre:</label>
+				<input type="text" autofocus id="nombre" name="nombre" required value="${perro.nombre}">
+			</div>
 
 			<div class="form-group">
 				<label for="raza">Raza:</label>
-				<input type="text" id="raza" name="raza" placeholder="Raza del perro" required>
+				<input type="text" id="raza" name="raza" required value="${perro.raza}">
 			</div>
 
 			<div class="form-group">
 				<label for="peso">Peso(kg):</label>
-				<input type="number" id="peso" name="peso" placeholder="Peso en Kilogramos" required>
+				<input type="number" id="peso" name="peso" required value="${perro.peso}">
 			</div>
 
 			<div class="form-group">
 				<label for="vacunado">Marca si esta Vacunado</label>
-				<input type="checkbox" id="vacunado" name="vacunado" checked>
+				<input type="checkbox" id="vacunado" name="vacunado" ${(perro.vacunado)==true ? 'Checked' : ' ' } >
 			</div>
 
 			<div class="form-group">
 				<label for="historia">Historia</label>
-				<textarea id="historia" name="historia" cols="30" rows="5" placeholder="Cuentame la historia del perro"></textarea>	
+				<textarea id="historia" name="historia" cols="30" rows="5">${perro.historia}</textarea>	
 			</div>
 
 			<input type="submit" class="boton" value="Guardar Datos">
 		</form>
+
 
  </main>
  
