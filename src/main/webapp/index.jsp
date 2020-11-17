@@ -1,16 +1,20 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="estilos.css">
-</head>
-<body>
+<jsp:include page="includes/cabecera.jsp" />
 
-<h1>Soy la pagina de inicio</h1>
+
+<main class="container" >
+
+
+
+<div class="hero-image">
+  <div class="hero-text">
+    <h2>Hola, soy Laika!</h2>
+    <p>Soy un perrete muy salado</p>
+    
+    <a class="boton" href="perro-controller"> Ver perros </a>
+  </div>
+</div>
 
 <%
 	// podemos combinar HTML + Java = JSP - Java Server Page
@@ -18,24 +22,7 @@
 
 %>
 
-<p>Esto hace una peticion GET al controlador</p>
-<a href="perro">Listado de Perros</a>
-
-<form method="post" action="perro">
- <p>Esto envia datos por POST al controlador</p>
- <input type="text" name="nombre" placeholder="Nombre del perro" required>
- <br>
- <input type="text" name="raza" placeholder="Raza del perro" required>
- <br>
- <input type="text" name="peso" placeholder="Peso del perro en kg" required>
- <br>
+ </main>
  
- Marca si esta Vacunado:
- <input type="checkbox" name="vacunado">
- <br>
- <textarea name="historia" cols="30" rows="5" placeholder="Cuentame la historia del perro"></textarea> 
- <br>
- <input type="submit" value="Enviar">
-</form>
-</body>
-</html>
+ 
+ <jsp:include page="includes/pie.jsp" />

@@ -15,7 +15,7 @@ import com.ipartek.formacion.pojo.Perro;
 /**
  * @WebServlet("/perro") es la URL donde escucha este controlador
  */
-@WebServlet("/perro")
+@WebServlet("/perro-controller")
 public class PerroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -42,10 +42,17 @@ public class PerroController extends HttpServlet {
 			 */
 		}
 		// enviarlos a la JSP
+		// perros es el nombre de la variable para pintar.
+		// request.setAttribute(String, Objeto);
+		// String, podeis poner el nombre que querais, pero ese mismo nombre lo usaremos
+		// en el JSP para acceder al objeto.
+		// Objeto se puede enviar lo que queramos: String, BOolean, Perro, ArrayList....
 		request.setAttribute("perros", lista);
+		request.setAttribute("mensaje", "Recuperados" + lista.size() + "perros");
 
-		// ir a la JSP
-		request.getRequestDispatcher("perros.jsp").forward(request, response);
+		// comando para ir al la VISTa, hacemos un FORWARD y escribimos el nombre de la
+		// JSP
+		request.getRequestDispatcher("tabla-perros.jsp").forward(request, response);
 
 	}
 
@@ -57,6 +64,7 @@ public class PerroController extends HttpServlet {
 			throws ServletException, IOException {
 
 		// recibri datos del formulario, fijaros en el input el atributo 'name'
+
 		String parametroNombre = request.getParameter("nombre");
 		String raza = request.getParameter("raza");
 		Float peso = Float.parseFloat(request.getParameter("peso"));
@@ -71,8 +79,12 @@ public class PerroController extends HttpServlet {
 		p.setHistoria(historia);
 
 		PerroDAOSqlite dao = PerroDAOSqlite.getInstance();
+
 		try {
+
 			dao.crear(p);
+			request.setAttribute("mensaje", "Lo sentimos pero " + p.getNombre() + " de perro ya existe");
+
 		} catch (Exception e) {
 
 			e.printStackTrace();

@@ -1,0 +1,273 @@
+@charset "ISO-8859-1";
+/*
+* 	ORGANIZACION DE CSS
+* 	1. Reset o normalize (se suele incluir en head con otro .css)
+*	2. Animaciones o @keyframes y efectos (esta parte no vamos a verla)
+*	3. Variables globales
+*	4. Etiquetas HTML
+*	5. Layouts (dar estilos al main, footer, container...)
+*	6. Clases definidas (Botones, hero, ...
+*	7. Selectores mas particulares 8para un id concreto, o pagina concreta, ....)
+*/
+
+
+/****** ROOT y NORMALIZE *******/
+
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  font-size: 1em;
+}
+
+
+/****** VARIABLES GLOBALES *******/
+
+:root {
+  --lightgrey: #eee;
+  --negro: #000;
+  --darkgrey: #ccc;
+  --darkdarkgrey: #609564;
+  --blanco: #fff;
+  --lightmarron: bisque;
+  --darkmarron: rgb(126, 87, 39);
+}
+
+/****** ETIQUETAS HTML *******/
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
+/*  tabla
+***************/
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 15px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+th, caption {
+  background-color: var(--darkdarkgrey);
+  color: var(--lightmarron);
+}
+
+caption {
+	font-size: 1.2rem;
+	text-align: center;
+	padding: 5px 0;
+	border-top:1px solid #FFF;
+	border-bottom:1px solid #FFF;
+}
+
+tfoot td {
+	background-color: #c5c3c3;
+	text-align: center;
+}
+/*------- FIN TABLA ------*/
+
+
+h1{
+	color: var(--blanco);
+	padding: 0 0 0 20px;
+	letter-spacing: 2px;
+ 
+}
+
+h2{
+	font-size: 2em;
+}
+h2, h3, h4{
+margin: 5px 0 5px 0;
+}
+
+form  {
+	border: 1px solid var(--lightgrey);
+	position:relative;
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+input { 
+	width:95%;
+	margin: 5px; 
+	}
+
+
+
+
+/********** LAYOUTS **********/
+
+.container, .cabecera, .pie{
+	
+	margin:auto;
+	/*border: 1px solid var(--darkgrey);*/
+	
+	box-sizing: border-box;
+	width: 100%;
+	
+}
+
+.container{
+	width: 1024px;
+}
+
+
+
+.cabecera{
+	display: flex;
+  	justify-content: space-between;
+  	align-items: center;
+  	background-color: var(--darkdarkgrey);
+  	
+}
+
+
+.menu{
+	width: 60%;
+	border: 1px solid var(--lightgrey);
+}
+.menu ul{
+	display: flex;
+  	justify-content: space-between;
+  	
+}
+
+.menu ul li{
+	padding: 10px;
+}
+
+.menu ul li:hover{
+	padding: 10px;
+	background-color: var(--lightmarron);
+	color: var(--darkdarkgrey);
+}
+
+.menu ul li a{
+	color: var(--lightgrey);
+	
+}
+.menu ul li a:hover{
+	color: var(--darkdarkgrey);	
+}
+
+.detalle{
+	
+	width: 60%;
+	border: 1px solid var(--lightgrey);
+	margin-left: 30px;
+}
+
+.detalle ul li{
+	padding: 5px;
+}
+
+.pie{
+	margin:auto;
+	padding: 20px;
+	background-color: var(--darkdarkgrey);
+	color: white;
+	text-align:center;
+	
+}
+
+
+/********** DEFINIDAS **********/
+
+.logo{
+	width: 40%;
+}
+
+
+
+.eliminar{
+	text-align: right;
+}
+.eliminar a{
+	padding:10px;
+	background-color: var(--darkdarkgrey);
+	color: white;
+	font-weight: 600;
+	text-align: center;
+	
+}
+
+/*       HERO       */
+
+
+body, html {
+    height: 80vh;
+}
+
+/* The hero image */
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("../imgs/dog.jpg");
+
+  /* Set a specific height */
+  height: 80vh;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.hero-text p {
+ margin: 0 0 12px 0;
+}
+
+/*****************/
+
+.head_perro{
+	text-align:center;
+}
+.head_perro img{
+	width: 1000px;
+}
+
+
+.boton {   
+    padding: 5px 12px;
+    min-height: 60px;    
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    text-transform: uppercase;
+    background-color: var(--white);
+    border: 1px solid var(--lightmarron);
+    border-radius: 10px;
+    color: var(--white);
+}
+
+.boton:hover {
+  transition: 1s;
+  color: var(--black);
+  background-color: var(--darkmarron);
+}
+
