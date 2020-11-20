@@ -27,7 +27,7 @@ public class PerroDAOSqlite implements PerroDao {
 	@Override
 	public ArrayList<Perro> listar() {
 
-		final String SQL = "SELECT id, nombre, raza, peso, vacunado, historia FROM perro ORDER BY nombre ASC;";
+		final String SQL = "SELECT id, nombre, raza, peso, vacunado, historia, imagen FROM perro ORDER BY nombre ASC;";
 		ArrayList<Perro> perros = new ArrayList<Perro>();
 
 		try (Connection conn = ConectionManager.getConnection();
@@ -58,7 +58,7 @@ public class PerroDAOSqlite implements PerroDao {
 	@Override
 	public Perro recuperar(int id) {
 		Perro perro = null;
-		final String SQL = "SELECT id, nombre, raza, peso, vacunado, historia FROM perro WHERE id = ?;";
+		final String SQL = "SELECT id, nombre, raza, peso, vacunado, historia, imagen FROM perro WHERE id = ?;";
 
 		try (Connection conn = ConectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(SQL);) {
 
@@ -88,7 +88,7 @@ public class PerroDAOSqlite implements PerroDao {
 
 	@Override
 	public Perro crear(Perro p) throws Exception {
-		final String SQL = "INSERT INTO perro (nombre,raza,peso, vacunado, historia) VALUES (?, ?, ?,?,?);";
+		final String SQL = "INSERT INTO perro (nombre,raza,peso, vacunado, historia, imagen) VALUES (?, ?, ?,?,?, ?);";
 
 		try (Connection conn = ConectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);) {
@@ -97,6 +97,7 @@ public class PerroDAOSqlite implements PerroDao {
 			pst.setString(2, p.getRaza());
 			pst.setFloat(3, p.getPeso());
 			pst.setBoolean(4, p.isVacunado());
+			pst.setString(6, p.getImagen());
 			pst.setString(5, p.getHistoria());
 
 			int affectedsRows = pst.executeUpdate();
@@ -119,7 +120,7 @@ public class PerroDAOSqlite implements PerroDao {
 	@Override
 	public Perro modificar(Perro p) throws Exception {
 		Perro perro = null;
-		final String SQL = "UPDATE perro SET nombre = ? , raza=?, peso = ?, vacunado= ?, historia= ? WHERE id = ?;";
+		final String SQL = "UPDATE perro SET nombre = ? , raza=?, peso = ?, vacunado= ?, historia= ?, imagen= ? WHERE id = ?;";
 		try (Connection conn = ConectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(SQL);) {
 
 			pst.setString(1, p.getNombre());
@@ -127,7 +128,8 @@ public class PerroDAOSqlite implements PerroDao {
 			pst.setFloat(3, p.getPeso());
 			pst.setBoolean(4, p.isVacunado());
 			pst.setString(5, p.getHistoria());
-			pst.setInt(6, p.getId());
+			pst.setString(6, p.getImagen());
+			pst.setInt(7, p.getId());
 
 			pst.executeUpdate(); // CUIDADO no usar executeQuery
 
@@ -186,6 +188,7 @@ public class PerroDAOSqlite implements PerroDao {
 		perro.setPeso(rs.getFloat("peso"));
 		perro.setVacunado(rs.getBoolean("vacunado"));
 		perro.setHistoria(rs.getString("historia"));
+		perro.setImagen(rs.getString("imagen"));
 
 		return perro;
 	}

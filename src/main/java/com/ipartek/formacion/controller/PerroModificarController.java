@@ -52,6 +52,7 @@ public class PerroModificarController extends HttpServlet {
 		Boolean vacunado = (request.getParameter("vacunado") == null) ? false : true;
 		/* Otra forma: Boolean vacunado = (request.getParameter("vacunado") != null); */
 		String historia = request.getParameter("historia");
+		String imagen = request.getParameter("imagen");
 
 		Perro p = new Perro();
 		p.setId(id);
@@ -60,6 +61,7 @@ public class PerroModificarController extends HttpServlet {
 		p.setPeso(peso);
 		p.setVacunado(vacunado);
 		p.setHistoria(historia);
+		p.setImagen(imagen);
 
 		PerroDAOSqlite dao = PerroDAOSqlite.getInstance();
 

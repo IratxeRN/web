@@ -12,19 +12,31 @@
 			${perro}
 		
 		
-		<h3>Maquetado</h3>
-			
-		<div class="detalle">
-			<ul>
-				<li>Id: ${perro.id} </li>
-				<li>Nombre: ${perro.nombre}</li>
-				<li>Raza: ${perro.raza}</li>
-				<li>Peso: ${perro.peso}</li>
-				<li>Esta vacunado?: ${vacuna} </li>
-				<li>Historia: ${perro.historia}</li>
-			</ul>
-		</div>
 		
+		<div class="perroficha">
+		
+			<div class="perro">
+
+				
+				<img src="${perro.imagen}" alt="${perro.nombre}">
+
+
+			</div>	
+			<div class="detalle">
+				<ul>
+					<li><span class="negrita">Id:</span> ${perro.id} </li>
+					<li><span class="negrita">Nombre:</span> ${perro.nombre}</li>
+					<li><span class="negrita">Raza:</span> ${perro.raza}</li>
+					<li><span class="negrita">Peso:</span> ${perro.peso} Kg</li>
+					<li><span class="negrita">Esta vacunado?:</span> ${vacuna} </li>
+					<li><span class="negrita">Historia:</span> ${perro.historia}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="centrar2">
+		<a href="perro-detalle?id=${perro.id-1}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+		<a href="perro-detalle?id=${perro.id+1}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+		</div>
 	
 		<div class="eliminar">
 		

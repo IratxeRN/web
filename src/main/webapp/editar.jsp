@@ -42,6 +42,11 @@
 				<label for="historia">Historia</label>
 				<textarea id="historia" name="historia" cols="30" rows="5">${perro.historia}</textarea>	
 			</div>
+			
+			<div class="form-group">
+				<label for="imagen">Imagen</label>
+				<input type="text" id="imagen" name="imagen" value="${perro.imagen}">
+			</div>
 
 			<input type="submit" class="boton" value="Guardar Datos">
 		</form>

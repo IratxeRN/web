@@ -35,6 +35,11 @@
 				<textarea id="historia" name="historia" cols="30" rows="5" placeholder="Cuentame la historia del perro"></textarea>	
 			</div>
 
+			<div class="form-group">
+				<label for="imagen">Imagen</label>
+				<input type="text" id="imagen" name="imagen" placeholder="foto en JPEG">
+			</div>
+
 			<input type="submit" class="boton" value="Guardar Datos">
 		</form>
 

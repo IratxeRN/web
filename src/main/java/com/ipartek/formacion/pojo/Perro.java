@@ -3,6 +3,7 @@ package com.ipartek.formacion.pojo;
 public class Perro extends Mamifero {
 
 	public static final String RAZA_POR_DEFECTO = "cruce";
+	public static final String URL_FOTO = "imgs/perretes/no_perro.jpg";
 
 	// Atributos, deben ser siempre privados
 	// la forma de manipular estos atributos es a traves de los getteres y settres
@@ -12,6 +13,7 @@ public class Perro extends Mamifero {
 	private float peso;
 	private boolean vacunado;
 	private String historia;
+	private String imagen;
 
 	// Constructores
 	///////////////////////////////////////
@@ -22,6 +24,7 @@ public class Perro extends Mamifero {
 		this.peso = 0f;
 		this.vacunado = false;
 		this.historia = "Erase una vez....";
+		this.imagen = URL_FOTO;
 	}
 
 	// otro constructor sobrecargado
@@ -33,6 +36,15 @@ public class Perro extends Mamifero {
 		this.peso = 0f;
 		this.vacunado = false;
 		this.historia = "Erase una vez....";
+		this.imagen = URL_FOTO;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public Perro(int id, String nombre) {
@@ -114,7 +126,7 @@ public class Perro extends Mamifero {
 	@Override
 	public String toString() {
 		return "Perro [id=" + id + ", raza=" + raza + ", peso=" + peso + ", vacunado=" + vacunado + ", historia="
-				+ historia + ", getNombre()=" + getNombre() + ", getPatas()=" + getPatas() + "]";
+				+ historia + ",  imagen=" + imagen + ", getNombre()=" + getNombre() + "]";
 	}
 
 }

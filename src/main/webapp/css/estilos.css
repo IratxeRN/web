@@ -64,6 +64,9 @@ th, caption {
   color: var(--lightmarron);
 }
 
+th{
+	text-align:center;
+}
 caption {
 	font-size: 1.2rem;
 	text-align: center;
@@ -150,7 +153,6 @@ i {
 
 .container{
 	width: 1024px;
-
 }
 
 
@@ -164,10 +166,10 @@ i {
 }
 
 
-
 .menu{
 	width: 60%;
 	border: 1px solid var(--lightgrey);
+	margin: 0 2em 0 0;
 }
 .menu ul{
 	display: flex;
@@ -177,6 +179,7 @@ i {
 
 .menu ul li{
 	padding: 10px;
+	font-weight: 700;
 }
 
 .menu ul li:hover{
@@ -195,13 +198,13 @@ i {
 
 .detalle{
 	
-	width: 60%;
-	border: 1px solid var(--lightgrey);
+	width: 40%;
+	border: 1px solid var(--darkdarkgrey);
 	margin-left: 30px;
 }
 
 .detalle ul li{
-	padding: 5px;
+	padding: 10px;
 }
 
 .pie{
@@ -304,3 +307,31 @@ body, html {
   cursor: pointer;
 }
 
+.centrar, .perroficha{
+    display: flex;
+   	justify-content: center;
+}
+
+.centrar2{
+    display: flex;
+   	justify-content: space-between;
+}
+
+
+.perroficha{
+	 width: 100%;
+	padding: 20px;
+	margin:20px;
+
+}
+
+.perro img{
+	  width: 250px;
+      border-radius: 15%;
+      border: 1px solid  #f3b632;
+}
+
+
+.negrita{
+	 font-weight: 700;
+}
